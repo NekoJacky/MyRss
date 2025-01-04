@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Dict, Any, TextIO
 
 
 class Config:
@@ -30,7 +31,7 @@ class ConfigParser:
         if not os.path.exists('config.json'):
             user_phone = input('input your phone number: ')
             password = input('input your password: ')
-            config_dict = {
+            config_dict: Dict[str, Any] = {
                 "bilibili": [
                     {
                         "user_phone": user_phone,
@@ -38,8 +39,8 @@ class ConfigParser:
                     }
                 ]
             }
-            with open('config.json', 'w') as f:
-                json.dump(config_dict, f, ensure_ascii=False, indent=4)
+            with open('config.json', 'w', encoding='utf-8') as f:
+                json.dump(config_dict, f, ensure_ascii=False, indent=4)  # type:ignore[f]
             f.close()
         self.config_str = json.load(open('config.json'))
         # print(config_str, type(config_str))

@@ -7,23 +7,16 @@ def get_title():
     url = 'https://www.baidu.com/'
     # 确认需要的环境
     try:
-        html = urlopen(url)
+        html = urlopen(url).read()
+        print(html)
+        print('----- html -----')
     except HTTPError as e:
-        print('Error: test_env.py.get_title()')
-        print('       html = urlopen(url)')
-        print('       HTTPError')
-        print(e)
+        print('HTTP Error:', e)
         return None
     except URLError as e:
-        print('Error: test_env.py.get_title()')
-        print('       html = urlopen(url)')
-        print('       URLError')
-        print(e)
+        print('URL Error: ', e)
         return None
     try:
-        # print(html.read())
-        # print('----- html -----')
-
         # 确认 python 自带的 html.parser 和两个第三方解析器 lxml 和 html5lib 都可用
         # bs = BeautifulSoup(html, 'lxml')
         # bs = BeautifulSoup(html, 'html5lib')
@@ -35,6 +28,6 @@ def get_title():
 
 
 if __name__ == '__main__':
-    html = get_title()
-    if html is not None:
-        print(html)
+    html_get = get_title()
+    if html_get is not None:
+        print(html_get)

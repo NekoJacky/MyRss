@@ -22,21 +22,24 @@ class Config:
 
 class BilibiliConfig:
     def __init__(self):
-        with open('config.json', 'r', encoding='utf-8') as json_data:
-            self.config = json.load(json_data)
+        try:
+            with open('config.json', 'r', encoding='utf-8') as json_data:
+                self.config = json.load(json_data)
+        except FileNotFoundError:
+            self.config = {}
 
     def save_config(self) -> None:
         with open('config.json', 'w', encoding='utf-8') as json_data:
             json.dump(self.config, cast("SupportsWrite[str]", json_data), ensure_ascii=False, indent=4)
 
     def get_exist_phone(self) -> str:
-        phone = input('电话号码')
+        phone = input('输入电话号码')
         while phone not in self.config['bilibili']:
             phone = input('不存在电话信息，重新输入电话号码')
         return phone
 
     def get_new_phone(self) -> str:
-        phone = input('电话号码')
+        phone = input('输入电话号码')
         if 'bilibili' in self.config:
             while phone in self.config['bilibili']:
                 phone = input('电话已存在，重新输入电话号码')

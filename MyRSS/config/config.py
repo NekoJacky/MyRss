@@ -84,6 +84,6 @@ if __name__ == '__main__':
     print('----------')
     config_str = config.get_bilibili_config()
     print(config_str)
-    print('----------')
-    config.add_bilibili_config()
+    # print('----------')
+    # config.add_bilibili_config()
     print('----------')

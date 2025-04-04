@@ -1,4 +1,4 @@
-from MyRSS.config import Config
+from config.config import Config
 
 
 class MyRSS:
